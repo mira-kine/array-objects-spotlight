@@ -51,7 +51,9 @@ export const getSum = (...rest) => {
 // REQS: use rest parameters
 // getFirstTwoArgs(1, 2, 3, 4, 5) should return [1, 2, [3, 4, 5]]
 // getFirstTwoArgs('a', 'b', 'c', 'd') should return ['a', 'b', ['c', 'd']]
-export const getFirstTwoArgs = () => {};
+export const getFirstTwoArgs = (first, second, ...rest) => {
+  return [first, second, rest];
+};
 
 // INPUT: an object with the following structure
 // {
@@ -74,16 +76,22 @@ export const getFirstTwoArgs = () => {};
 //    return a NEW object, do not modify the object passed in to the function
 //    use spread operator to create a new object
 
-export const addSneakerCount = () => {};
+export const addSneakerCount = ({ shoes, ...rest }) => {
+  return { ...rest, sneakerCount: shoes.length };
+};
 
 // INPUT: brands from data.js
 // OUTPUT: the brand names listed
 // REQS: use Object.keys to solve
-export const getBrandNames = () => {};
+export const getBrandNames = (brands) => {
+  return Object.keys(brands);
+};
 
 // INPUT: brands from data.js
 // OUTPUT: total number of sneaker types across all brands (14)
-export const totalSneakerCount = () => {};
+export const totalSneakerCount = (brands) => {
+  return Object.keys(brands).reduce((acc, key) => (acc += brands[key].shoes.length), 0);
+};
 
 // INPUT: An object
 // OUTPUT: An array with key value pairs converted to arrays
@@ -92,4 +100,6 @@ export const totalSneakerCount = () => {};
 // convertToArray({}) => []
 // Source: https://edabit.com/challenge/pPNAs5PvB3WvnDwDM
 
-export const convertToArray = () => {};
+export const convertToArray = (object) => {
+  return Object.keys(object).map((key) => [key, object[key]]);
+};
